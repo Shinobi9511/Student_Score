@@ -14,7 +14,7 @@ st.write("Yeh app SVM model ka use karke predict karti hai ki student ke paas pa
 # 1. Data Loading
 @st.cache_data
 def load_data():
-    df = pd.read_csv(r'student-scores.csv')
+    df = pd.read_csv('student-scores.csv')
     # Basic Cleaning
     df['gender'] = df['gender'].str.capitalize()
     return df
@@ -79,3 +79,4 @@ if st.button("Predict Job Status"):
     else:
 
         st.warning("Result: Is student ke paas **Job nahi** hone ke chances hain.")
+
