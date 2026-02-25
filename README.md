@@ -1,59 +1,217 @@
-# Student Career & Job Predictor (SVM)
+# 🎓 Student Career & Job Predictor (SVM) – Streamlit App
 
-This project is a Streamlit-based web application that uses a Support Vector Machine (SVM) classifier to predict whether a student has a part-time job based on their academic performance and study habits.
+A Machine Learning web application built with **Streamlit** that predicts whether a student has a **part-time job** using a Support Vector Machine (SVM) classifier.
 
-## Features
+The model is dynamically trained inside the app using student academic and behavioral features.
 
-* **Interactive Data Exploration**: View a preview of the first 10 rows of the student dataset directly in the app.
-* **Dynamic Model Tuning**:
-* Adjust the test data size using a slider (10% to 50%).
-* Select different SVM kernels (linear, poly, rbf, or sigmoid) to see how they impact prediction accuracy.
+---
 
+## 🚀 Project Overview
 
-* **Real-time Performance Metrics**: Displays the model's accuracy score based on the selected parameters.
-* **Single Student Prediction**: A manual tool where you can input specific student metrics to get an instant job status prediction.
+This application:
 
-## Input Parameters
+* Loads student dataset
+* Performs preprocessing (encoding + scaling)
+* Splits data into training and testing sets
+* Trains an SVM classifier
+* Displays model accuracy
+* Allows manual prediction for a single student
 
-The model utilizes the following nine features for its predictions:
-
-* Absence Days
-* Weekly Self-Study Hours
-* Math Score
-* History Score
-* Physics Score
-* Chemistry Score
-* Biology Score
-* English Score
-* Geography Score
-
-## Technologies Used
-
-* **Frontend**: Streamlit
-* **Data Handling**: Pandas
-* **Machine Learning**: Scikit-learn (SVM, StandardScaler, LabelEncoder)
-
-## Setup and Installation
-
-1. **Prerequisites**: Ensure you have Python installed along with the required libraries:
-```bash
-pip install streamlit pandas scikit-learn
+The prediction target:
 
 ```
+part_time_job (Yes/No)
+```
 
+---
 
-2. **Dataset**: The application expects a CSV file named `student-scores.csv` located at `c:\Users\Aanjney\Downloads\`. *(Note: You may need to update the file path in `app.py` to match your local environment)*.
-3. **Run the App**:
+## 🛠 Tech Stack
+
+* Python 3.9+
+* Streamlit
+* Pandas
+* Scikit-learn
+* NumPy
+
+---
+
+## 📂 Project Structure
+
+```
+├── app.py
+├── student-scores.csv
+├── requirements.txt
+└── README.md
+```
+
+⚠️ Important:
+Update the dataset path inside `app.py` before deployment. Currently it uses:
+
+```python
+pd.read_csv(r'c:\Users\Aanjney\Downloads\student-scores.csv')
+```
+
+For deployment, change it to:
+
+```python
+pd.read_csv("student-scores.csv")
+```
+
+---
+
+## 📊 Features Used for Prediction
+
+The model uses the following numerical features:
+
+* absence_days
+* weekly_self_study_hours
+* math_score
+* history_score
+* physics_score
+* chemistry_score
+* biology_score
+* english_score
+* geography_score
+
+Target Variable:
+
+```
+part_time_job
+```
+
+---
+
+## ⚙️ Machine Learning Workflow
+
+### 1️⃣ Data Cleaning
+
+* Gender column capitalized
+* Label Encoding applied to target
+
+### 2️⃣ Train-Test Split
+
+* Adjustable test size (10%–50%)
+* Controlled using Streamlit slider
+
+### 3️⃣ Feature Scaling
+
+* StandardScaler used
+* Applied before SVM training
+
+### 4️⃣ Model Training
+
+* Algorithm: Support Vector Machine (SVC)
+* Kernel selectable from:
+
+  * linear
+  * poly
+  * rbf
+  * sigmoid
+
+### 5️⃣ Evaluation
+
+* Accuracy Score displayed in UI
+
+---
+
+### UI Sections
+
+✔ Dataset Preview
+✔ Model Accuracy Display
+✔ Kernel Selection
+✔ Adjustable Test Size
+✔ Manual Student Prediction Tool
+
+---
+
+## ▶️ How to Run Locally
+
+### 1️⃣ Clone Repository
+
+```bash
+git clone https://github.com/your-username/student-job-svm.git
+cd student-job-svm
+```
+
+### 2️⃣ Create Virtual Environment (Optional)
+
+```bash
+python -m venv venv
+source venv/bin/activate      # Mac/Linux
+venv\Scripts\activate         # Windows
+```
+
+### 3️⃣ Install Dependencies
+
+```bash
+pip install -r requirements.txt
+```
+
+### 4️⃣ Run the App
+
 ```bash
 streamlit run app.py
-
 ```
 
+App will open at:
 
+```
+http://localhost:8501
+```
 
-## Usage
+---
 
-1. Open the application in your browser.
-2. Use the **Sidebar** to configure the test data split and the SVM kernel.
-3. Review the **Model Performance** metric to see the accuracy of your configuration.
-4. Scroll to the **"Check Single Student Prediction"** section, enter the student's data, and click **"Predict Job Status"** to see the result.
+## ☁️ Streamlit Cloud Deployment
+
+1. Push project to GitHub
+2. Go to Streamlit Cloud
+3. Select repository
+4. Choose `app.py`
+5. Deploy
+
+Ensure:
+
+* `student-scores.csv` is inside repository
+* File path in `app.py` is relative
+* All dependencies listed in `requirements.txt`
+
+---
+
+## 📦 Example requirements.txt
+
+```
+streamlit
+pandas
+scikit-learn
+numpy
+```
+
+---
+
+## 🧠 Model Explanation
+
+This app uses **Support Vector Classification (SVC)**:
+
+* Finds optimal hyperplane
+* Maximizes margin between classes
+* Works well with high-dimensional data
+* Kernel trick allows non-linear classification
+
+---
+
+## ⚠️ Limitations
+
+* Model retrains every time app runs
+* No hyperparameter tuning
+* Only accuracy metric used
+* No confusion matrix or precision/recall
+
+---
+
+## 👨‍💻 Author
+
+Aanjney Kumawat
+Machine Learning & Data Science Enthusiast
+Skilled in Python, SQL, ML Deployment & Analytics
+
+---
